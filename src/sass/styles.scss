@@ -1,3 +1,9 @@
+$green: #7ccc81;
+$red: #cc684d;
+$yellow: #ccc678;
+$blue: #9db9cc;
+
+
 body {
   display: flex;
   height: 100vh;
@@ -15,19 +21,34 @@ body {
   font-size: 20px;
   height: 14px;
   line-height: 0;
-  outline: 1px solid red;
   text-align: center;
   width: 50px;
 }
 
 .colors {
+  border: 1px solid gray;
   display: flex;
   height: 50px;
-  outline: 1px solid red;
 
   .color {
+    cursor: pointer;
     flex: 25%;
-    outline: 1px solid blue;
+  }
+
+  .color-green {
+    background-color: $green;
+  }
+
+  .color-red {
+    background-color: $red;
+  }
+
+  .color-yellow {
+    background-color: $yellow;
+  }
+
+  .color-blue {
+    background-color: $blue;
   }
 }
 
@@ -35,7 +56,6 @@ body {
   align-items: stretch;
   display: flex;
   justify-content: flex-end;
-  outline: 1px solid magenta;
 
   .controls-start,
   .controls-strict {
@@ -43,17 +63,13 @@ body {
     border: 1px solid gray;
     padding: 8px;
   }
-  
+
   .controls-strict.isChecked {
     background-color: red;
     color: white;
   }
-  
+
   .controls-strict input {
     display: none;
-  }
-
-  & > * {
-    outline: 1px solid green;
   }
 }
