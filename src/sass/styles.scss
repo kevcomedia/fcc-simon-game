@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.frame {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  width: 480px;
+}
+
+.counter {
+  font-family: monospace;
+  font-size: 20px;
+  height: 14px;
+  line-height: 0;
+  outline: 1px solid red;
+  text-align: center;
+  width: 50px;
+}
+
+.colors {
+  display: flex;
+  height: 50px;
+  outline: 1px solid red;
+
+  .color {
+    flex: 25%;
+    outline: 1px solid blue;
+  }
+}
+
+.controls {
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-end;
+  outline: 1px solid magenta;
+
+  .controls-start,
+  .controls-strict {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 8px;
+  }
+  
+  .controls-strict.isChecked {
+    background-color: red;
+    color: white;
+  }
+  
+  .controls-strict input {
+    display: none;
+  }
+
+  & > * {
+    outline: 1px solid green;
+  }
+}
