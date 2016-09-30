@@ -1,7 +1,16 @@
-$green: #7ccc81;
-$red: #cc684d;
-$yellow: #ccc678;
-$blue: #9db9cc;
+$green: #9bc53d;
+$red: #ff3c38;
+$yellow: #fde74c;
+$blue: #3f88c5;
+
+
+@mixin setColor($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: saturate(darken($color, 20%), 10%);
+  }
+}
 
 
 body {
@@ -40,19 +49,19 @@ body {
   }
 
   .color-green {
-    background-color: $green;
+    @include setColor($green);
   }
 
   .color-red {
-    background-color: $red;
+    @include setColor($red);
   }
 
   .color-yellow {
-    background-color: $yellow;
+    @include setColor($yellow);
   }
 
   .color-blue {
-    background-color: $blue;
+    @include setColor($blue);
   }
 }
 
