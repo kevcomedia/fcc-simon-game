@@ -7,7 +7,7 @@ $blue: #3f88c5;
 @mixin setColor($color) {
   background-color: $color;
 
-  &:hover {
+  &.isActive {
     background-color: saturate(darken($color, 20%), 10%);
   }
 }
