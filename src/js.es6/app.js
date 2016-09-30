@@ -1,0 +1,1 @@
+const strict = require("./strict");
