@@ -5,7 +5,10 @@ const strict = require("./strict");
 const sounds = require("./sounds");
 const game = require("./game");
 
+const $stepCounter = $(".counter");
+
 $("#start").on("click", function() {
+  $stepCounter.text("--");
   game.reset();
   $(".color").removeClass("isActive");
   animate();
@@ -23,15 +26,16 @@ $(".color").on("mouseup", function() {
 $(".color").on("click", function() {
   const color = $(this).data("color");
   if (game.matchesCurrentColor(color)) {
-    game.incrementCorrectCount();
-    if (game.correctCountEqualsCurrentLevel()) {
+    game.incrementStepCount();
+    if (game.stepCountEqualsCurrentLevel()) {
       if (game.isMaxLevel()) {
         // good end
+        $stepCounter.text("**");
         alert("Yay!");
       }
       else {
         game.incrementCurrentLevel();
-        game.clearCorrectCount();
+        game.clearStepCount();
         animate();
       }
     }
@@ -40,13 +44,16 @@ $(".color").on("click", function() {
     /* flash red color */
     /* if strict mode is on, reset game */
     /* else, reset correct count */
-    game.clearCorrectCount();
+    $stepCounter.text("!!");
+    game.clearStepCount();
     animate();
   }
 });
 
 function animate() {
   setTimeout(function() {
+    $stepCounter.text(game.getCurrentLevel());
+
     for (let i = 0; i < game.getCurrentLevel(); i++) {
       let color = game.getColorAt(i);
       let $color = $(`#${color}`);

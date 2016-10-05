@@ -11,7 +11,7 @@ const functions = {
     return sequence[index] == color;
   },
 
-  incrementCorrectCount() {
+  incrementStepCount() {
     index++;
   },
 
@@ -19,7 +19,7 @@ const functions = {
     level++;
   },
 
-  correctCountEqualsCurrentLevel() {
+  stepCountEqualsCurrentLevel() {
     return index === level;
   },
 
@@ -27,7 +27,7 @@ const functions = {
     return level == maxLevel;
   },
 
-  clearCorrectCount() {
+  clearStepCount() {
     index = 0;
   },
 
