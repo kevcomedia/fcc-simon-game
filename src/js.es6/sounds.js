@@ -8,5 +8,6 @@ const sounds = {
 };
 
 exports.play = function(color) {
+  sounds[color].load();
   sounds[color].play();
 };
