@@ -5,41 +5,43 @@ let sequence = [];
 let level = 1;
 let index = 0;
 
-function reset() {
-  sequence = [];
-  level = 1;
-  index = 0;
+const functions = {
+  reset() {
+    sequence = [];
+    level = 1;
+    index = 0;
 
-  for (let ci = 0; ci < maxLevel; ci++) {
-    sequence.push(random());
+    for (let ci = 0; ci < maxLevel; ci++) {
+      sequence.push(random());
+    }
+
+    function random() {
+      const colors = ["green", "red", "yellow", "blue"];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[randomIndex];
+    }
+  },
+
+  getSequence() {
+    return sequence.slice(0, level);
+  },
+
+  // We could probably guard against trying to get sequence[index]
+  // for any index >= level and index < 0.
+  getColorAt(i) {
+    return sequence[i];
+  },
+
+  getLevel() {
+    return level;
+  },
+
+  increment() {
+    level++;
   }
-
-  function random() {
-    const colors = ["green", "red", "yellow", "blue"];
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  }
-}
-
-function getSequence() {
-  return sequence.slice(0, level);
-}
-
-// We could probably guard against trying to get sequence[index]
-// for any index >= level and index < 0.
-function getColorAt(i) {
-  return sequence[i];
-}
-
-function getLevel() {
-  return level;
-}
-
-function increment() {
-  level++;
-}
+};
 
 // Fill the sequence with values before exporting.
-reset();
+functions.reset();
 
-module.exports = { reset, getSequence, getColorAt, getLevel, increment };
+module.exports = functions;
