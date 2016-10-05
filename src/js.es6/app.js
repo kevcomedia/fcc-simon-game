@@ -26,8 +26,8 @@ $(".color").on("mouseup", function() {
 $(".color").on("click", function() {
   const color = $(this).data("color");
   if (game.matchesCurrentColor(color)) {
-    game.incrementCorrectCount();
-    if (game.correctCountEqualsCurrentLevel()) {
+    game.incrementStepCount();
+    if (game.stepCountEqualsCurrentLevel()) {
       if (game.isMaxLevel()) {
         // good end
         $stepCounter.text("**");
@@ -35,7 +35,7 @@ $(".color").on("click", function() {
       }
       else {
         game.incrementCurrentLevel();
-        game.clearCorrectCount();
+        game.clearStepCount();
         animate();
       }
     }
@@ -45,7 +45,7 @@ $(".color").on("click", function() {
     /* if strict mode is on, reset game */
     /* else, reset correct count */
     $stepCounter.text("!!");
-    game.clearCorrectCount();
+    game.clearStepCount();
     animate();
   }
 });
