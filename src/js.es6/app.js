@@ -2,10 +2,10 @@
 
 const $ = require("jquery");
 const strict = require("./strict");
-const sequence = require("./sequence");
+const game = require("./game");
 
 $("#start").on("click", function() {
-  sequence.reset();
+  game.reset();
   $(".color").removeClass("isActive");
   animate();
 });
@@ -18,9 +18,34 @@ $(".color").on("mouseup", function() {
   $(this).removeClass("isActive");
 });
 
+$(".color").on("click", function() {
+  const color = $(this).data("color");
+  if (game.matchesCurrentColor(color)) {
+    game.incrementCorrectCount();
+    if (game.correctCountEqualsCurrentLevel()) {
+      if (game.isMaxLevel()) {
+        // good end
+        alert("Yay!");
+      }
+      else {
+        game.incrementCurrentLevel();
+        game.clearCorrectCount();
+        animate();
+      }
+    }
+  }
+  else {
+    /* flash red color */
+    /* if strict mode is on, reset game */
+    /* else, reset correct count */
+    game.clearCorrectCount();
+    animate();
+  }
+});
+
 function animate() {
-  for (let i = 0; i < sequence.getLevel(); i++) {
-    let $color = $(`#${sequence.getColorAt(i)}`);
+  for (let i = 0; i < game.getCurrentLevel(); i++) {
+    let $color = $(`#${game.getColorAt(i)}`);
     setTimeout(function() {
       $color.addClass("isActive");
       setTimeout(function() {
