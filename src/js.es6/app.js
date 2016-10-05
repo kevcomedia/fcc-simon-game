@@ -2,6 +2,7 @@
 
 const $ = require("jquery");
 const strict = require("./strict");
+const sounds = require("./sounds");
 const game = require("./game");
 
 $("#start").on("click", function() {
@@ -12,6 +13,7 @@ $("#start").on("click", function() {
 
 $(".color").on("mousedown", function() {
   $(this).addClass("isActive");
+  sounds.play($(this).data("color"));
 });
 
 $(".color").on("mouseup", function() {
@@ -44,13 +46,17 @@ $(".color").on("click", function() {
 });
 
 function animate() {
-  for (let i = 0; i < game.getCurrentLevel(); i++) {
-    let $color = $(`#${game.getColorAt(i)}`);
-    setTimeout(function() {
-      $color.addClass("isActive");
+  setTimeout(function() {
+    for (let i = 0; i < game.getCurrentLevel(); i++) {
+      let color = game.getColorAt(i);
+      let $color = $(`#${color}`);
       setTimeout(function() {
-        $color.removeClass("isActive");
-      }, 500)
-    }, i * 1000 + 500);
-  }
+        sounds.play(color);
+        $color.addClass("isActive");
+        setTimeout(function() {
+          $color.removeClass("isActive");
+        }, 500);
+      }, i * 1000 + 500);
+    }
+  }, 500);
 }
