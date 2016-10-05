@@ -2,10 +2,10 @@
 
 const $ = require("jquery");
 const strict = require("./strict");
-const sequence = require("./sequence");
+const game = require("./game");
 
 $("#start").on("click", function() {
-  sequence.reset();
+  game.reset();
   $(".color").removeClass("isActive");
   animate();
 });
@@ -19,8 +19,8 @@ $(".color").on("mouseup", function() {
 });
 
 function animate() {
-  for (let i = 0; i < sequence.getLevel(); i++) {
-    let $color = $(`#${sequence.getColorAt(i)}`);
+  for (let i = 0; i < game.getLevel(); i++) {
+    let $color = $(`#${game.getColorAt(i)}`);
     setTimeout(function() {
       $color.addClass("isActive");
       setTimeout(function() {
