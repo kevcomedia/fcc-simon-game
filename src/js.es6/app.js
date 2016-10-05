@@ -46,15 +46,17 @@ $(".color").on("click", function() {
 });
 
 function animate() {
-  for (let i = 0; i < game.getCurrentLevel(); i++) {
-    let color = game.getColorAt(i);
-    let $color = $(`#${color}`);
-    setTimeout(function() {
-      sounds.play(color);
-      $color.addClass("isActive");
+  setTimeout(function() {
+    for (let i = 0; i < game.getCurrentLevel(); i++) {
+      let color = game.getColorAt(i);
+      let $color = $(`#${color}`);
       setTimeout(function() {
-        $color.removeClass("isActive");
-      }, 500)
-    }, i * 1000 + 500);
-  }
+        sounds.play(color);
+        $color.addClass("isActive");
+        setTimeout(function() {
+          $color.removeClass("isActive");
+        }, 500);
+      }, i * 1000 + 500);
+    }
+  }, 500);
 }
