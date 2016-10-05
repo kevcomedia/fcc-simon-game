@@ -6,6 +6,39 @@ let level = 1;
 let index = 0;
 
 const functions = {
+  // `color` must be in the set { "green", "red", "yellow", "blue" }
+  matchesCurrentColor(color) {
+    return sequence[index] == color;
+  },
+
+  incrementCorrectCount() {
+    index++;
+  },
+
+  incrementCurrentLevel() {
+    level++;
+  },
+
+  correctCountEqualsCurrentLevel() {
+    return index === level;
+  },
+
+  isMaxLevel() {
+    return level == maxLevel;
+  },
+
+  clearCorrectCount() {
+    index = 0;
+  },
+
+  getCurrentLevel() {
+    return level;
+  },
+
+  getColorAt(i) {
+    return sequence[i];
+  },
+
   reset() {
     sequence = [];
     level = 1;
@@ -21,24 +54,6 @@ const functions = {
       return colors[randomIndex];
     }
   },
-
-  getSequence() {
-    return sequence.slice(0, level);
-  },
-
-  // We could probably guard against trying to get sequence[index]
-  // for any index >= level and index < 0.
-  getColorAt(i) {
-    return sequence[i];
-  },
-
-  getLevel() {
-    return level;
-  },
-
-  increment() {
-    level++;
-  }
 };
 
 // Fill the sequence with values before exporting.
