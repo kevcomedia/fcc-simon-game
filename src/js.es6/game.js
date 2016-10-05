@@ -4,6 +4,7 @@ const maxLevel = 20;
 let sequence = [];
 let level = 1;
 let index = 0;
+let isStrict = false;
 
 const functions = {
   // `color` must be in the set { "green", "red", "yellow", "blue" }
@@ -37,6 +38,14 @@ const functions = {
 
   getColorAt(i) {
     return sequence[i];
+  },
+
+  isStrict() {
+    return isStrict;
+  },
+
+  setStrict(strict) {
+    isStrict = strict;
   },
 
   reset() {

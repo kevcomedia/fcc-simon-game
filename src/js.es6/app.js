@@ -1,11 +1,19 @@
 "use strict";
 
 const $ = require("jquery");
-const strict = require("./strict");
 const sounds = require("./sounds");
 const game = require("./game");
 
 const $stepCounter = $(".counter");
+const $strict = $("#strict");
+
+$strict.on("change", function() {
+  const label = $strict.parent();
+  const isStrict = $strict.prop("checked");
+  const fn = isStrict ? label.addClass : label.removeClass;
+  fn.call(label, "isChecked");
+  game.setStrict(isStrict);
+});
 
 $("#start").on("click", function() {
   $stepCounter.text("--");
@@ -41,11 +49,8 @@ $(".color").on("click", function() {
     }
   }
   else {
-    /* flash red color */
-    /* if strict mode is on, reset game */
-    /* else, reset correct count */
+    game.isStrict() ? game.reset() : game.clearStepCount();
     $stepCounter.text("!!");
-    game.clearStepCount();
     animate({ wrongButtonPressed: true });
   }
 });
