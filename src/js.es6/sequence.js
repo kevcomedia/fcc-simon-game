@@ -19,8 +19,18 @@ function reset() {
   }
 }
 
-function get() {
+function getSequence() {
   return sequence.slice(0, level);
+}
+
+// We could probably guard against trying to get sequence[index]
+// for any index >= level and index < 0.
+function getColorAt(index) {
+  return sequence[index];
+}
+
+function getLevel() {
+  return level;
 }
 
 function increment() {
@@ -30,4 +40,4 @@ function increment() {
 // Fill the sequence with values before exporting.
 reset();
 
-module.exports = { reset, get, increment };
+module.exports = { reset, getSequence, getColorAt, getLevel, increment };
