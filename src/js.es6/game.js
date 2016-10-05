@@ -3,10 +3,12 @@
 const maxLevel = 20;
 let sequence = [];
 let level = 1;
+let index = 0;
 
 function reset() {
   sequence = [];
   level = 1;
+  index = 0;
 
   for (let ci = 0; ci < maxLevel; ci++) {
     sequence.push(random());
@@ -25,8 +27,8 @@ function getSequence() {
 
 // We could probably guard against trying to get sequence[index]
 // for any index >= level and index < 0.
-function getColorAt(index) {
-  return sequence[index];
+function getColorAt(i) {
+  return sequence[i];
 }
 
 function getLevel() {
