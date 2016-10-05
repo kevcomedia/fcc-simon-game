@@ -10,6 +10,14 @@ $("#start").on("click", function() {
   animate();
 });
 
+$(".color").on("mousedown", function() {
+  $(this).addClass("isActive");
+});
+
+$(".color").on("mouseup", function() {
+  $(this).removeClass("isActive");
+});
+
 function animate() {
   for (let i = 0; i < sequence.getLevel(); i++) {
     let $color = $(`#${sequence.getColorAt(i)}`);
