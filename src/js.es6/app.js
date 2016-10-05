@@ -49,11 +49,8 @@ $(".color").on("click", function() {
     }
   }
   else {
-    /* flash red color */
-    /* if strict mode is on, reset game */
-    /* else, reset correct count */
+    game.isStrict() ? game.reset() : game.clearStepCount();
     $stepCounter.text("!!");
-    game.clearStepCount();
     animate({ wrongButtonPressed: true });
   }
 });
