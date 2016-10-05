@@ -1,6 +1,6 @@
 "use strict";
 
-const length = 20;
+const maxLevel = 20;
 let sequence = [];
 let level = 1;
 
@@ -8,7 +8,7 @@ function reset() {
   sequence = [];
   level = 1;
 
-  for (let ci = 0; ci < length; ci++) {
+  for (let ci = 0; ci < maxLevel; ci++) {
     sequence.push(random());
   }
 
