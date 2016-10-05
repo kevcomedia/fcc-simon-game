@@ -21,6 +21,10 @@ body {
   &.wrongButtonPressed {
     background-color: #f1b2a2;
   }
+
+  &.victory {
+    background-color: #89f087;
+  }
 }
 
 .frame {

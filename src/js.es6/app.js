@@ -18,6 +18,7 @@ $strict.on("change", function() {
 $("#start").on("click", function() {
   $stepCounter.text("--");
   game.reset();
+  $("body").removeClass("victory");
   $(".color").removeClass("isActive");
   animate();
 });
@@ -38,8 +39,8 @@ $(".color").on("click", function() {
     if (game.stepCountEqualsCurrentLevel()) {
       if (game.isMaxLevel()) {
         // good end
+        $("body").addClass("victory");
         $stepCounter.text("**");
-        alert("Yay!");
       }
       else {
         game.incrementCurrentLevel();
