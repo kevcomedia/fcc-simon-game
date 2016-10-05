@@ -46,12 +46,17 @@ $(".color").on("click", function() {
     /* else, reset correct count */
     $stepCounter.text("!!");
     game.clearStepCount();
-    animate();
+    animate({ wrongButtonPressed: true });
   }
 });
 
-function animate() {
+function animate({ wrongButtonPressed = false } = {}) {
+  if (wrongButtonPressed) {
+    $("body").addClass("wrongButtonPressed");
+  }
+
   setTimeout(function() {
+    $("body").removeClass("wrongButtonPressed");
     $stepCounter.text(game.getCurrentLevel());
 
     for (let i = 0; i < game.getCurrentLevel(); i++) {
