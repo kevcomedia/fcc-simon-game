@@ -2,6 +2,7 @@
 
 const $ = require("jquery");
 const strict = require("./strict");
+const sounds = require("./sounds");
 const game = require("./game");
 
 $("#start").on("click", function() {
@@ -12,6 +13,7 @@ $("#start").on("click", function() {
 
 $(".color").on("mousedown", function() {
   $(this).addClass("isActive");
+  sounds.play($(this).data("color"));
 });
 
 $(".color").on("mouseup", function() {
