@@ -1,0 +1,106 @@
+$green: #9bc53d;
+$red: #ff3c38;
+$yellow: #fde74c;
+$blue: #3f88c5;
+
+
+@mixin setColor($color) {
+  background-color: $color;
+
+  &.isActive {
+    background-color: saturate(darken($color, 20%), 10%);
+  }
+}
+
+
+body {
+  background-color: #f4fec1;
+  display: flex;
+  height: 100vh;
+
+  &.wrongButtonPressed {
+    background-color: #f1b2a2;
+  }
+
+  &.victory {
+    background-color: #89f087;
+  }
+}
+
+.frame {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  width: 480px;
+}
+
+.counter {
+  background-color: white;
+  border: 1px solid gray;
+  border-bottom: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
+  width: 50px;
+}
+
+.colors {
+  border: 1px solid gray;
+  display: flex;
+  height: 50px;
+
+  .color {
+    cursor: pointer;
+    flex: 25%;
+
+    &-green {
+      @include setColor($green);
+    }
+
+    &-red {
+      @include setColor($red);
+    }
+
+    &-yellow {
+      @include setColor($yellow);
+    }
+
+    &-blue {
+      @include setColor($blue);
+    }
+  }
+}
+
+.controls {
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-end;
+
+  &-start,
+  &-strict {
+    background-color: white;
+    border: 1px solid gray;
+    border-top: 0;
+    padding: 8px;
+  }
+
+  &-start {
+    border-right: 0;
+    border-bottom-left-radius: 4px;
+  }
+
+  &-strict {
+    border-bottom-right-radius: 4px;
+  }
+
+  &-strict.isChecked {
+    background-color: red;
+    color: white;
+  }
+
+  &-strict input {
+    display: none;
+  }
+}
