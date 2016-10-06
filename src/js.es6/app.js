@@ -7,6 +7,8 @@ const game = require("./game");
 const $stepCounter = $(".counter");
 const $strict = $("#strict");
 
+let buttonsEnabled = false;
+
 $strict.on("change", function() {
   const label = $strict.parent();
   const isStrict = $strict.prop("checked");
@@ -24,6 +26,8 @@ $("#start").on("click", function() {
 });
 
 $(".color").on("mousedown", function() {
+  if (!buttonsEnabled) return;
+
   $(this).addClass("isActive");
   sounds.play($(this).data("color"));
 });
@@ -33,6 +37,8 @@ $(".color").on("mouseup", function() {
 });
 
 $(".color").on("click", function() {
+  if (!buttonsEnabled) return;
+
   const color = $(this).data("color");
   if (game.matchesCurrentColor(color)) {
     game.incrementStepCount();
@@ -57,6 +63,8 @@ $(".color").on("click", function() {
 });
 
 function animate({ wrongButtonPressed = false } = {}) {
+  buttonsEnabled = false;
+
   if (wrongButtonPressed) {
     $("body").addClass("wrongButtonPressed");
   }
@@ -76,5 +84,9 @@ function animate({ wrongButtonPressed = false } = {}) {
         }, 500);
       }, i * 1000 + 500);
     }
+
+    setTimeout(function() {
+      buttonsEnabled = true;
+    }, game.getCurrentLevel() * 1000);
   }, 500);
 }
